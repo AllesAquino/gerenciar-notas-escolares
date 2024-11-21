@@ -1,6 +1,11 @@
-# GerenciarNotasEscolares
+# Gerenciar Notas Escolares
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+Para esse projeto foi utilizado o Node versão 20.10.0.
+
+Foi utilizado o Angular CLI versão 17.
+npm install -g @angular/cli@17
+
+[Angular CLI](https://github.com/angular/angular-cli)
 
 ## Development server
 
