@@ -1,0 +1,72 @@
+
+<form [formGroup]="formulario">
+
+  @if (formulario.controls['nome'].errors?.['required'] && formulario.controls['nome'].touched) {
+    <p class="alert alert-danger">O campo nome precisa ser preenchido.</p>
+  }
+
+  @if (formulario.controls['primeiraNota'].errors?.['required'] && formulario.controls['primeiraNota'].touched) {
+    <p class="alert alert-danger">O campo primeira nota precisa ser preenchido.</p>
+  }
+
+  @if (formulario.controls['primeiraNota'].errors?.['min'] && formulario.controls['primeiraNota'].touched) {
+    <p class="alert alert-danger">O campo primeira nota não pode ser menor que 0.</p>
+  }
+
+  @if (formulario.controls['primeiraNota'].errors?.['max'] && formulario.controls['primeiraNota'].touched) {
+    <p class="alert alert-danger">O campo primeira nota não pode ser maior que 10.</p>
+  }
+
+  @if (formulario.controls['segundaNota'].errors?.['required'] && formulario.controls['segundaNota'].touched) {
+    <p class="alert alert-danger">O campo segunda nota precisa ser preenchido.</p>
+  }
+
+  @if (formulario.controls['segundaNota'].errors?.['min'] && formulario.controls['segundaNota'].touched) {
+    <p class="alert alert-danger">O campo segunda nota não pode ser menor que 0.</p>
+  }
+
+  @if (formulario.controls['segundaNota'].errors?.['max'] && formulario.controls['segundaNota'].touched) {
+    <p class="alert alert-danger">O campo segunda nota não pode ser maior que 10.</p>
+  }
+
+<!--
+  @if (formulario.get('nome').hasError('required') && formulario.get('nome').touched) {
+    <p class="alert alert-warning">O campo nome precisa ser preenchido.</p>
+  }
+    -->
+
+  <!-- INPUTS -->
+  <input type="text" name="nome" placeholder="Nome" formControlName="nome" class="form-control">
+  <input type="number" name="primeiraNota" placeholder="Primeira Nota" formControlName="primeiraNota" class="form-control">
+  <input type="number" name="segundaNota" placeholder="Segunda Nota" formControlName="segundaNota" class="form-control">
+
+  <input type="button" value="Cadastrar" *ngIf="btnCadastrar"  (click)="cadastrar()" class="btn btn-primary" [disabled]="formulario.invalid" >
+  <input type="button" value="Alterar"   *ngIf="!btnCadastrar" (click)="alterar()"   class="btn btn-warning" [disabled]="formulario.invalid">
+  <input type="button" value="Excluir"   *ngIf="!btnCadastrar" (click)="excluir()"   class="btn btn-danger">
+  <input type="button" value="Cancelar"  *ngIf="!btnCadastrar" (click)="cancelar()"  class="btn btn-secondary">
+</form>
+
+<!-- TABELA -->
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Primeira Nota</th>
+          <th>Segunda Nota</th>
+          <th>Media</th>
+          <th>Selecionar</th>
+      </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let a of listaAlunos; let indice = index">
+          <td>{{indice+1}}</td>
+          <td>{{a.nome}}</td>
+          <td>{{a.primeiraNota}}</td>
+          <td>{{a.segundaNota}}</td>
+          <td>{{a | media}}</td>
+          <td><button class="btn btn-success" (click)="selecionar(indice)">Selecionar</button></td>
+      </tr>
+  </tbody>
+</table>
